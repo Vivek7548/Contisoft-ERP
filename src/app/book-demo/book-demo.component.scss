@@ -1,0 +1,309 @@
+.demo-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    background: linear-gradient(135deg, #f5fbff 0%, #e6f6f2 45%, #ddeffd 100%);
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 50%, rgba(99, 207, 65, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(15, 95, 209, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    &__glow {
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.6;
+        animation: glowFloat 14s ease-in-out infinite;
+        &--left {
+            top: -40px;
+            left: -120px;
+            background: rgba(99, 207, 65, 0.4);
+        }
+        &--right {
+            bottom: -80px;
+            right: -140px;
+            background: rgba(15, 95, 209, 0.4);
+            animation-delay: 3s;
+        }
+    }
+}
+
+.demo-card {
+    position: relative;
+    max-width: 550px;
+    width: 100%;
+    margin: 14px 0;
+    padding: 16px 37px 12px;
+    border-radius: 36px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 40px 90px rgba(15, 23, 42, 0.18), 0 0 1px rgba(15, 95, 209, 0.1);
+    border: 1px solid rgba(11, 28, 54, 0.08);
+    overflow: hidden;
+    animation: cardGlide 0.8s ease-out;
+   
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border-radius: 25px;
+        // border: 1px dashed rgba(15, 95, 209, 0.15);
+        pointer-events: none;
+    }
+    &__header {
+        text-align: center;
+        margin-bottom: 3px;
+        animation: headerFade 0.8s ease-out;
+    }
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 24px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0b7b5a;
+    box-shadow: 0 15px 35px rgba(11, 28, 54, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(99, 207, 65, 0.25);
+    margin-bottom: 4px;
+    animation: eyebrowPulse 5s ease-in-out infinite;
+    &::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #63cf41;
+        box-shadow: 0 0 12px rgba(99, 207, 65, 0.7), 0 0 24px rgba(99, 207, 65, 0.3);
+    }
+}
+
+.form-title {
+    font-size: 2.4rem;
+    margin: 0;
+    color: #0b1c36;
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #0b1c36 0%, #0b7b5a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-subtitle {
+    margin-top: 0px;
+    color: rgba(11, 28, 54, 0.7);
+    font-size: 1.02rem;
+    font-weight: 500;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.form-row input,
+.form-row select {
+    flex: 1;
+    min-width: 0;
+}
+
+input,
+select,
+textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 16px;
+    border: 1.5px solid rgba(11, 28, 54, 0.1);
+    border-radius: 14px;
+    font-size: 15px;
+    background: rgba(244, 247, 252, 0.95);
+    color: #0b1c36;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.12);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+    &:hover {
+        border-color: rgba(99, 207, 65, 0.35);
+        box-shadow: 0 0 16px rgba(99, 207, 65, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #8b3eea;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(139, 62, 234, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.08);
+    outline: none;
+}
+
+textarea {
+    min-height: 40px;
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 8px;
+    background: linear-gradient(135deg, #4a1c96 0%, #8b3eea 100%);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(75, 28, 150, 0.25);
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.15);
+        transition: left 0.4s ease;
+    }
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(75, 28, 150, 0.4);
+        &::before {
+            left: 100%;
+        }
+    }
+    &:active {
+        transform: translateY(-2px);
+    }
+}
+
+.demo-note {
+    margin: 6px 0;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(99, 207, 65, 0.2);
+    color: rgba(11, 28, 54, 0.8);
+    font-size: 0.88rem;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    animation: noteSlide 0.8s ease-out 0.5s both;
+}
+
+@media (max-width: 991px) {
+    .demo-card {
+        padding: 3px 24px 4px;
+    }
+    .form-title {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .demo-card {
+        padding: 2px 20px 3px;
+    }
+    input,
+    select,
+    textarea {
+        font-size: 14px;
+        padding: 4px 13px;
+    }
+    .submit-btn {
+        font-size: 15px;
+        padding: 6px;
+    }
+}
+
+@keyframes glowFloat {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-35px);
+    }
+}
+
+@keyframes eyebrowPulse {
+    0%,
+    100% {
+        box-shadow: 0 15px 35px rgba(11, 28, 54, 0.12);
+    }
+    50% {
+        box-shadow: 0 25px 45px rgba(11, 28, 54, 0.2);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardGlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes headerFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes noteSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

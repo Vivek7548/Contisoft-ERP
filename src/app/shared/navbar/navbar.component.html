@@ -1,0 +1,149 @@
+<header class="nav" data-aos="fade-down" data-aos-duration="800">
+  <div class="nav__row">
+    <!-- Logo -->
+    <div class="nav__brand">
+      <a routerLink="/home" class="logo-link">
+        <img
+          src="../../../assets/contisoft.png"
+          alt="Logo"
+          loading="lazy"
+          class="logo"
+        />
+      </a>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav__menu" [ngClass]="{ open: isMobileMenuOpen }">
+      <a routerLink="/home" (click)="closeMobileMenu()">Home</a>
+
+      <!-- API Marketplace Dropdown -->
+      <div class="dropdown" [class.open]="isDropdownOpen">
+        <a
+          class="dropdown-toggle"
+          href="javascript:void(0)"
+          (click)="toggleDropdown($event)"
+        >
+          API Marketplace <i class="fa fa-chevron-down"></i>
+        </a>
+
+        <ul class="dropdown-menu" *ngIf="isDropdownOpen">
+          <li>
+            <a routerLink="/pan-verification" (click)="closeDropdownManually()"
+              >PAN Card Verification API</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/address-verification"
+              (click)="closeDropdownManually()"
+              >Address Verification API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/ckyc-verification" (click)="closeDropdownManually()"
+              >CKYC Verification API</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/aadhaar-verification"
+              (click)="closeDropdownManually()"
+              >Aadhaar Card Verification API</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/esignature-verification"
+              (click)="closeDropdownManually()"
+              >E-Signature Verification API</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/passport-verification"
+              (click)="closeDropdownManually()"
+              >Passport Verification API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/bankaccount-api" (click)="closeDropdownManually()"
+              >Bank Account API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/cersai-automation" (click)="closeDropdownManually()"
+              >CERSAI Automation</a
+            >
+          </li>
+          <li>
+            <a routerLink="/financialrisk-api" (click)="closeDropdownManually()"
+              >Financial Risk API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/msme-api" (click)="closeDropdownManually()"
+              >MSME API</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/courtandcriminal-api"
+              (click)="closeDropdownManually()"
+              >Court & Criminal API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/pep-api" (click)="closeDropdownManually()"
+              >PEP API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/sanction-api" (click)="closeDropdownManually()"
+              >Sanction API</a
+            >
+          </li>
+          <li>
+            <a routerLink="/esbtr-estamp" (click)="closeDropdownManually()"
+              >ESBTR & E-Stamp</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/international-vendor"
+              (click)="closeDropdownManually()"
+              >International Vendor</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <a routerLink="/about" (click)="closeMobileMenu()">About</a>
+      <a routerLink="/contact" (click)="closeMobileMenu()">Contact Us</a>
+
+      <!-- Buttons -->
+      <div class="nav__actions">
+        <a
+          routerLink="/book-demo"
+          class="btn btn-demo"
+          (click)="closeMobileMenu()"
+          >Book Demo</a
+        >
+        <a routerLink="/login" class="btn btn-login" (click)="closeMobileMenu()"
+          >Log In</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hamburger -->
+    <a
+      href="javascript:void(0)"
+      aria-label="open menu"
+      class="hamburger open-menu is-lg-none"
+      (click)="toggleMobileMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+</header>

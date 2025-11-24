@@ -1,0 +1,81 @@
+<section class="hero" data-aos="fade-in">
+  <div class="hero__glow hero__glow--left"></div>
+  <div class="hero__glow hero__glow--right"></div>
+
+  <div class="hero-content" data-aos="fade-right" data-aos-duration="900">
+    <span class="eyebrow">LET’S COLLABORATE</span>
+    <h1>
+      Transform Ideas <br />
+      <span>Into Reality</span>
+    </h1>
+    <p class="lead">Innovative solutions tailored to your business needs.</p>
+    <p class="subtext">Together, we create lasting impact.</p>
+
+    <div class="hero-meta">
+      <div class="meta-card" data-aos="zoom-in" data-aos-delay="100">
+        <span class="meta-label">Response time</span>
+        <span class="meta-value">⏱ 24h</span>
+      </div>
+      <div class="meta-card" data-aos="zoom-in" data-aos-delay="200">
+        <span class="meta-label">Global reach</span>
+        <span class="meta-value">🌍 45+ countries</span>
+      </div>
+      <div class="meta-card" data-aos="zoom-in" data-aos-delay="300">
+        <span class="meta-label">Engagements</span>
+        <span class="meta-value">🤝 300+ teams</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="contact-card" data-aos="fade-left" data-aos-duration="900">
+    <div class="contact-card__header">
+      <h2 class="form-title">Contact Us</h2>
+      <p class="form-subtitle">Fill in your details and we’ll get in touch soon.</p>
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <input type="text" formControlName="firstName" placeholder="First name*" data-aos="fade-up" />
+        <input type="text" formControlName="lastName" placeholder="Last name*" data-aos="fade-up" data-aos-delay="50" />
+      </div>
+
+      <input type="email" formControlName="email" placeholder="Work email*" data-aos="fade-up" data-aos-delay="80" />
+
+      <div class="form-row">
+        <input type="text" formControlName="phone" placeholder="Phone number*" data-aos="fade-up" data-aos-delay="110" />
+        <input type="text" formControlName="company" placeholder="Company name*" data-aos="fade-up" data-aos-delay="140" />
+      </div>
+
+      <input type="text" formControlName="jobTitle" placeholder="Job Title*" data-aos="fade-up" data-aos-delay="170" />
+
+      <select formControlName="country" data-aos="fade-up" data-aos-delay="200">
+        <option value="">Contact Country*</option>
+        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+      </select>
+
+      <textarea formControlName="message" placeholder="Message" data-aos="fade-up" data-aos-delay="230"></textarea>
+
+      <button type="submit" class="submit-btn" data-aos="zoom-in" data-aos-delay="260">
+        Submit
+      </button>
+    </form>
+
+    <div class="trusted-strip" data-aos="fade-up" data-aos-delay="300">
+      <span>Trusted by finance, procurement & compliance leaders</span>
+      <div class="avatar-stack">
+        <span class="avatar"></span>
+        <span class="avatar"></span>
+        <span class="avatar"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
