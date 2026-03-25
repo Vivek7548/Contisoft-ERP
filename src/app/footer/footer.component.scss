@@ -32,37 +32,30 @@ $ease-default: 0.3s ease;
 }
 
 .footer {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.68) 50%, rgba(255, 255, 255, 0.64) 100%);
-    background-color: rgba(255, 255, 255, 0.68);
-    -webkit-backdrop-filter: blur(12px) saturate(130%);
-    backdrop-filter: blur(12px) saturate(130%);
-    color: $color-text;
+    background: radial-gradient(circle at 20% 20%, rgba(20, 32, 56, 0.6), transparent 55%),
+        radial-gradient(circle at 80% 30%, rgba(12, 24, 50, 0.55), transparent 50%),
+        linear-gradient(180deg, #0b1220 0%, #0b1323 55%, #0c1426 100%);
+    color: #e6eefc;
     padding: 60px 20px 30px;
     font-family: "Poppins", sans-serif;
     position: relative;
-    overflow: visible;
-    border-top: 1px solid rgba(16, 16, 16, 0.08);
-    box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.12), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 -18px 50px rgba(8, 12, 22, 0.5);
 
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        border-radius: 0 0 20px 20px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(255, 255, 255, 0.00) 100%);
-        mix-blend-mode: normal;
-        opacity: 0.95;
-        z-index: 0;
-    }
+    &::before,
     &::after {
         content: "";
         position: absolute;
         inset: 0;
         pointer-events: none;
-        border-radius: 0 0 20px 20px;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.02) 40%, rgba(0, 0, 0, 0.00) 100%);
         z-index: 0;
+    }
+    &::before {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 55%);
+    }
+    &::after {
+        background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 60%);
     }
     >* {
         position: relative;
@@ -75,8 +68,8 @@ $ease-default: 0.3s ease;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 40px;
-    gap: 50px;
+    margin-bottom: 36px;
+    gap: 70px;
     animation: fadeUpFooter 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -99,6 +92,7 @@ $ease-default: 0.3s ease;
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
+    max-width: 300px;
 }
 
 .footer-logo-img {
@@ -114,16 +108,54 @@ $ease-default: 0.3s ease;
     }
 }
 
+.footer-address {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #ffffff;
+    max-width: 300px;
+    margin: 4px 0 0 0;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.footer-social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.footer-social-link:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+}
+
+.footer-social-icon {
+    width: 18px;
+    height: 18px;
+}
+
 .footer-nav {
     display: flex;
-    gap: 70px;
+    gap: 60px;
     flex: 1;
-    justify-content: flex-end;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .footer-column {
-    min-width: 140px;
+    min-width: 160px;
     animation: slideUpColumns 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
     @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
@@ -146,7 +178,7 @@ $ease-default: 0.3s ease;
 .footer-column-title {
     font-size: 16px;
     font-weight: 800;
-    color: $color-text;
+    color: #ffffff;
     margin: 0 0 18px 0;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -165,7 +197,7 @@ $ease-default: 0.3s ease;
         z-index: -1;
     }
     &:hover {
-        color: $color-primary;
+        color: #c7d6ff;
         letter-spacing: 0.8px;
         &::before {
             opacity: 1;
@@ -181,7 +213,7 @@ $ease-default: 0.3s ease;
         margin-bottom: 12px;
     }
     a {
-        color: $color-text;
+        color: rgba(230, 238, 252, 0.82);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -217,7 +249,7 @@ $ease-default: 0.3s ease;
             box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
         }
         &:hover {
-            color: $color-primary;
+            color: #ffffff;
             text-decoration: none;
             transform: translateY(-2px);
             &::before {
@@ -230,13 +262,51 @@ $ease-default: 0.3s ease;
     }
 }
 
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(230, 238, 252, 0.82);
+    font-size: 14px;
+    font-weight: 500;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        @include transition;
+    }
+
+    a:hover {
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+}
+
+.footer-icon {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #2f6dff;
+    box-shadow: 0 4px 10px rgba(47, 109, 255, 0.35);
+    flex-shrink: 0;
+}
+
 // Divider Line
 .footer-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3) 15%, rgba(240, 147, 251, 0.3) 50%, rgba(102, 126, 234, 0.3) 85%, transparent);
-    margin: 40px 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16) 20%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.16) 80%, transparent);
+    margin: 34px 0;
     animation: slideInDivider 800ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 0 10px rgba(8, 12, 22, 0.45);
 }
 
 @keyframes slideInDivider {
@@ -264,14 +334,14 @@ $ease-default: 0.3s ease;
 
 .footer-copyright {
     font-size: 14px;
-    color: $color-text;
+    color: rgba(230, 238, 252, 0.82);
     p {
         margin: 0;
     }
 }
 
 .footer-link {
-    color: $color-text;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     @include transition;
@@ -304,7 +374,7 @@ $ease-default: 0.3s ease;
         box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
     }
     &:hover {
-        color: $color-primary;
+        color: #c7d6ff;
         transform: translateY(-2px);
         &::before {
             opacity: 1;
@@ -317,7 +387,7 @@ $ease-default: 0.3s ease;
 
 .footer-terms {
     a {
-        color: $color-text;
+        color: rgba(230, 238, 252, 0.82);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -351,7 +421,7 @@ $ease-default: 0.3s ease;
             box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
         }
         &:hover {
-            color: $color-primary;
+            color: #ffffff;
             transform: translateY(-2px);
             &::before {
                 opacity: 1;
@@ -365,7 +435,7 @@ $ease-default: 0.3s ease;
 
 .footer-back-top {
     .back-to-top {
-        color: $color-text;
+        color: rgba(230, 238, 252, 0.82);
         text-decoration: none;
         font-size: 14px;
         font-weight: 600;
@@ -407,7 +477,7 @@ $ease-default: 0.3s ease;
             box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
         }
         &:hover {
-            color: $color-primary;
+            color: #ffffff;
             transform: translateY(-2px);
             &::before {
                 opacity: 1;
@@ -489,4 +559,11 @@ $ease-default: 0.3s ease;
     .footer-divider {
         margin: 20px 0;
     }
+}
+
+.footer-contact-icon {
+    width: 18px;
+    height: 18px;
+    color: #2f6dff;
+    flex-shrink: 0;
 }

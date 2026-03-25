@@ -1,13 +1,40 @@
-
 <section class="demo-hero" data-aos="fade-in">
   <div class="demo-hero__glow demo-hero__glow--left"></div>
   <div class="demo-hero__glow demo-hero__glow--right"></div>
 
+  <div class="demo-hero__content" data-aos="fade-right" data-aos-duration="900">
+    <span class="demo-hero__eyebrow">Personalized Platform Demo</span>
+    <h1 class="demo-hero__title">
+      Experience the Future
+      of API Integration </h1>
+    <p class="demo-hero__lead">See our platform in action with a personalized demo. Discover how Contisoft can transform
+      your API integration workflow and accelerate your development.</p>
+
+    <div class="demo-hero__meta">
+      <div class="demo-meta-card" data-aos="zoom-in" data-aos-delay="100">
+        <span class="demo-meta-card__label">Duration</span>
+        <span class="demo-meta-card__value">⏱ 45 Minutes
+        </span>
+      </div>
+      <div class="demo-meta-card" data-aos="zoom-in" data-aos-delay="200">
+        <span class="demo-meta-card__label">Format</span>
+        <span class="demo-meta-card__value">
+          <span class="demo-meta-card__icon">▶</span>
+          Live Video Call
+        </span>
+      </div>
+      <div class="demo-meta-card" data-aos="zoom-in" data-aos-delay="300">
+        <span class="demo-meta-card__label">Attendees</span>
+        <span class="demo-meta-card__value">🤝 Unlimited</span>
+      </div>
+    </div>
+  </div>
+
   <div class="demo-card" data-aos="zoom-in" data-aos-duration="900">
     <div class="demo-card__header">
       <span class="eyebrow" data-aos="fade-down">Secure your session</span>
-      <h1 class="form-title">Book a Demo</h1>
-      <p class="form-subtitle">Fill in your details and we’ll get in touch soon.</p>
+      <h1 class="form-title">Schedule Your Demo</h1>
+      <p class="form-subtitle">Fill in your details and we'll set up a personalized demo session for you.</p>
     </div>
 
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
@@ -19,8 +46,10 @@
       <input type="email" formControlName="email" placeholder="Work email*" data-aos="fade-up" data-aos-delay="90" />
 
       <div class="form-row">
-        <input type="text" formControlName="phone" placeholder="Phone number*" data-aos="fade-up" data-aos-delay="120" />
-        <input type="text" formControlName="company" placeholder="Company name*" data-aos="fade-up" data-aos-delay="150" />
+        <input type="text" formControlName="phone" placeholder="Phone number*" data-aos="fade-up"
+          data-aos-delay="120" />
+        <input type="text" formControlName="company" placeholder="Company name*" data-aos="fade-up"
+          data-aos-delay="150" />
       </div>
 
       <input type="text" formControlName="jobTitle" placeholder="Job Title*" data-aos="fade-up" data-aos-delay="180" />
@@ -40,4 +69,3 @@
     </div>
   </div>
 </section>
-

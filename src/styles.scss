@@ -123,7 +123,7 @@
 /* ✅ Single body rule */
 body {
   margin: 0;
-  font-family: Helvetica, sans-serif; // Or 'Inter'
+  font-family: "Poppins", sans-serif; // Or 'Inter'
   font-size: 21px;
   background: linear-gradient(135deg, var(--bg-2), var(--bg-1));
   color: #fff;
@@ -132,6 +132,49 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+@media (max-width: 1024px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  section,
+  header,
+  footer,
+  main,
+  .container,
+  .container1 {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
 }
 
 .button {
@@ -163,13 +206,13 @@ a {
 }
 
 .container {
-  max-width: 1180px;
+  // max-width: 1180px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 h1 {
-  font-family: 'Instrument Serif', serif;
+  font-family: 'Poppins', serif;
 }
 .image-section {
   flex: 1;

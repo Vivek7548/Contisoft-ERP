@@ -107,7 +107,7 @@ $ease-default: 0.3s ease;
     }
     .nav__row {
         width: 100%;
-        max-width: 1200px;
+        // max-width: 1200px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -284,6 +284,7 @@ $ease-default: 0.3s ease;
                 transition: opacity 0.4s $ease-smooth, transform 0.45s $ease-smooth, filter 0.45s $ease-smooth;
                 pointer-events: none;
                 z-index: 1000;
+
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px 24px;
@@ -335,6 +336,7 @@ $ease-default: 0.3s ease;
                     }
                     &:hover::after {
                         opacity: 1;
+                        
                     }
                 }
                 li a {
@@ -705,6 +707,12 @@ $ease-default: 0.3s ease;
         transform: translateY(-50%);
         cursor: pointer;
         z-index: 2100;
+        &.hide-on-scroll {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
         span {
             display: block;
             height: 3px;
@@ -727,6 +735,13 @@ $ease-default: 0.3s ease;
         }
         @media (max-width: 768px) {
             display: block;
+        }
+        @media (min-width: 1025px) {
+            &.hide-on-scroll {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(-50%);
+            }
         }
     }
     /* ==== Buttons ==== */
@@ -821,6 +836,45 @@ $ease-default: 0.3s ease;
                 font-size: 1rem;
                 padding: 0.7rem 1.4rem;
             }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .nav__row {
+            padding: 0 16px;
+        }
+
+        .nav__menu.open {
+            width: 100vw;
+            max-width: 100vw;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 1.25rem;
+            align-items: stretch;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .nav__menu.open a,
+        .nav__menu.open .dropdown,
+        .nav__menu.open .nav__actions {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav__menu.open .nav__actions a {
+            width: 100%;
+        }
+
+        .nav__menu.open .dropdown-menu {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .nav__menu.open {
+            padding: 1.25rem 1rem;
         }
     }
 }

@@ -9,6 +9,7 @@ export class NavbarComponent {
   newsletterEmail: string = '';
   isDropdownOpen = false;
   isMobileMenuOpen = false;
+  private lastScrollY = 0;
 
   // Newsletter Subscription
   subscribeNewsletter() {
@@ -34,7 +35,7 @@ export class NavbarComponent {
 
   closeDropdownManually() {
     this.isDropdownOpen = false;
-    this.isMobileMenuOpen = false;
+    this.closeMobileMenu();
   }
 
   // ================= MOBILE MENU =================
@@ -50,18 +51,48 @@ export class NavbarComponent {
 
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
+    this.isDropdownOpen = false;
     const hamburger = document.querySelector('.hamburger');
     hamburger?.classList.remove('open');
   }
 
-  // ================= OUTSIDE CLICK (Desktop only) =================
+  private isMobileOrTabletView(): boolean {
+    return window.innerWidth <= 1024;
+  }
+
+  // ================= OUTSIDE CLICK =================
   @HostListener('document:click', ['$event'])
   handleOutsideClick(event: Event) {
     const target = event.target as HTMLElement;
     const isDropdownClick = target.closest('.dropdown');
+    const isNavbarClick = target.closest('.nav');
+
+    if (this.isMobileMenuOpen && this.isMobileOrTabletView() && !isNavbarClick) {
+      this.closeMobileMenu();
+      this.isDropdownOpen = false;
+      return;
+    }
 
     if (this.isDropdownOpen && !this.isMobileMenuOpen && !isDropdownClick) {
       this.isDropdownOpen = false;
     }
+  }
+
+  @HostListener('window:scroll')
+  handleWindowScroll() {
+    if (!this.isMobileMenuOpen || !this.isMobileOrTabletView()) {
+      return;
+    }
+
+    const currentScrollY = window.scrollY || 0;
+    const hamburger = document.querySelector('.hamburger');
+
+    if (currentScrollY <= 0 || currentScrollY < this.lastScrollY) {
+      hamburger?.classList.remove('hide-on-scroll');
+    } else if (currentScrollY > this.lastScrollY) {
+      hamburger?.classList.add('hide-on-scroll');
+    }
+
+    this.lastScrollY = currentScrollY;
   }
 }

@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppService } from '../shared/services/app.service';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-book-demo',
   templateUrl: './book-demo.component.html',
   styleUrls: ['./book-demo.component.scss']
 })
 export class BookDemoComponent {
+
   contactForm: FormGroup;
+
   countries: string[] = [
     'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
     'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan',
@@ -28,7 +31,12 @@ export class BookDemoComponent {
     'Vietnam', 'Zimbabwe'
   ];
 
-  constructor(private fb: FormBuilder, private AppService: AppService) {
+  constructor(
+  private fb: FormBuilder,
+  private http: HttpClient
+)
+ {
+
     this.contactForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -39,27 +47,40 @@ export class BookDemoComponent {
       country: ['', Validators.required],
       message: ['']
     });
+
   }
 
   onSubmit() {
-    if (this.contactForm.valid) {
 
+    if (this.contactForm.invalid) {
+      alert('⚠️ Please fill all required fields correctly.');
+      return;
+    }
 
-      // this.ngxService.show();
-      this.AppService.postVendorDemo(this.contactForm.value).subscribe((result: any) => {
-        if (result.status === 200) {
-          console.log('✅ Form Submitted:', this.contactForm.value);
-          alert('Thank you! We will contact you soon.');
+    const formData = {
+      ...this.contactForm.value,
+      formType: 'demo'   
+    };
+
+this.http.post('https://sealsure-new-backend.sealsure.in/api/contact', formData)
+  .subscribe({
+      next: (result: any) => {
+
+        if (result.success) {
+          console.log('✅ Demo Form Submitted:', formData);
+          alert('🎉 Thank you! We will contact you soon.');
           this.contactForm.reset();
         } else {
-          alert('⚠️ Demo Request Failed');
+          alert('⚠️ Demo Request Failed. Please try again.');
         }
 
-      })
+      },
+      error: (error) => {
+        console.error('❌ Server Error:', error);
+        alert('⚠️ Server error. Please try again later.');
+      }
+    });
 
-
-    } else {
-      alert('⚠️ Please fill all required fields correctly.');
-    }
   }
+
 }

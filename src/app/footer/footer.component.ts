@@ -17,4 +17,8 @@ export class FooterComponent {
       alert('⚠️ Please enter a valid email address.');
     }
   }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

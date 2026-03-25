@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -24,7 +25,6 @@ import { BankaccountApiComponent } from './bankaccount-api/bankaccount-api.compo
 import { InternantionalVendorComponent } from './internantional-vendor/internantional-vendor.component';
 import { MsmeApiComponent } from './msme-api/msme-api.component';
 import { CersaiAutomationComponent } from './cersai-automation/cersai-automation.component';   // 👈 import here
-import { HttpClientModule } from '@angular/common/http'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule , HttpClientModule        // 👈 add here
