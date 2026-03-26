@@ -3,6 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as $ from 'jquery';  // ✅ import jQuery
 import 'slick-carousel';
 import * as AOS from 'aos';
+import { Title, Meta } from '@angular/platform-browser';
 
 interface JQuery {
   slick(options?: any): JQuery;
@@ -34,11 +35,19 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private title: Title,
+    private meta: Meta
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  this.title.setTitle('Contact Contisoft | API Marketplace Support');
 
+  this.meta.updateTag({
+    name: 'description',
+    content: 'Contact Contisoft Technologies for API integration, partnerships, and enterprise solutions.'
+  });
+}
   // Open/close chat
   toggleChat() {
     this.chatOpen = !this.chatOpen;
@@ -122,35 +131,32 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngAfterViewInit(): void {
-    // Initialize slick carousel with debounce for performance
-    this.ngZone.runOutsideAngular(() => {
-      setTimeout(() => {
-        try {
-          (((window as any).$('.testimonials-slider') as any)).slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            dots: true,
-            arrows: true,
-            infinite: true,
-            lazyLoad: 'ondemand',
-            responsive: [
-              { breakpoint: 1024, settings: { slidesToShow: 2 } },
-              { breakpoint: 768, settings: { slidesToShow: 1 } }
-            ]
-          });
-        } catch (e) {
-          // Fail silently
-        }
-      }, 100);
-    });
+    if (typeof window !== 'undefined') {
+      this.ngZone.runOutsideAngular(() => {
+        setTimeout(() => {
+          try {
+            const $slider = (window as any)['$']?.('.testimonials-slider');
+            if ($slider && $slider.slick) {
+              $slider.slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                infinite: true,
+                lazyLoad: 'ondemand',
+                responsive: [
+                  { breakpoint: 1024, settings: { slidesToShow: 2 } },
+                  { breakpoint: 768, settings: { slidesToShow: 1 } }
+                ]
+              });
+            }
+          } catch { }
+        }, 100);
+      });
+    }
 
-    // --- Accordion: only one open at a time (optimized) ---
     this.initAccordion();
-
-    // --- Optimized AOS: Deferred initialization for below-fold sections ---
     this.initDeferredAOS();
-
-    // --- IntersectionObserver: toggle .in-view on the .hero-card-section ---
     this.initHeroCardObserver();
   }
 
@@ -166,13 +172,13 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
               event.preventDefault();
               const clickedDetails = details as HTMLDetailsElement;
               const wasOpen = clickedDetails.open;
-              
+
               accordionDetails.forEach((otherDetails) => {
                 if (otherDetails !== clickedDetails) {
                   (otherDetails as HTMLDetailsElement).open = false;
                 }
               });
-              
+
               clickedDetails.open = !wasOpen;
             }, { passive: false });
           }
@@ -207,7 +213,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const section = entry.target as HTMLElement;
-            
+
             // Initialize AOS on first section intersection
             if (!this.aosInitialized) {
               this.initializeAOS();
@@ -215,7 +221,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
             // Enable animations for this section
             section.classList.add('aos-ready');
-            
+
             // Refresh AOS to trigger animations
             requestAnimationFrame(() => {
               if (typeof AOS !== 'undefined' && AOS.refresh) {
@@ -240,33 +246,20 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initializeAOS(): void {
-    if (this.aosInitialized) return;
+    if (this.aosInitialized || typeof window === 'undefined') return;
 
     this.ngZone.runOutsideAngular(() => {
-      // Use requestIdleCallback for non-critical initialization
-      const initCallback = 'requestIdleCallback' in window
-        ? (window as any).requestIdleCallback
-        : (callback: Function) => setTimeout(callback, 200);
-
-      initCallback(() => {
+      setTimeout(() => {
         try {
-          if (typeof AOS !== 'undefined') {
+          if (AOS) {
             AOS.init({
               duration: 800,
-              easing: 'ease-in-out-cubic',
-              once: true,
-              mirror: false,
-              offset: 120,
-              delay: 0,
-              throttleDelay: 99,
-              debounceDelay: 50
+              once: true
             });
             this.aosInitialized = true;
           }
-        } catch (e) {
-          // Fail silently
-        }
-      });
+        } catch { }
+      }, 200);
     });
   }
 
@@ -274,11 +267,11 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     try {
       const heroSections = Array.from(document.querySelectorAll('.hero-card-section')) as HTMLElement[];
       if (heroSections.length) {
-        const options: IntersectionObserverInit = { 
-          threshold: 0.18, 
-          rootMargin: '0px 0px -8% 0px' 
+        const options: IntersectionObserverInit = {
+          threshold: 0.18,
+          rootMargin: '0px 0px -8% 0px'
         };
-        
+
         this.heroObserver = new IntersectionObserver((entries) => {
           this.ngZone.runOutsideAngular(() => {
             entries.forEach(entry => {
@@ -299,25 +292,25 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-    ngOnDestroy(): void {
-      // Cleanup all observers
-      if (this.heroObserver) {
-        this.heroObserver.disconnect();
-      }
-      if (this.deferredSectionsObserver) {
-        this.deferredSectionsObserver.disconnect();
-      }
-
-      // Cleanup slick carousel
-      try {
-        const slider = (window as any).$('.testimonials-slider');
-        if (slider.length && slider.slick) {
-          slider.slick('unslick');
-        }
-      } catch (e) {
-        // Fail silently
-      }
+  ngOnDestroy(): void {
+    // Cleanup all observers
+    if (this.heroObserver) {
+      this.heroObserver.disconnect();
     }
+    if (this.deferredSectionsObserver) {
+      this.deferredSectionsObserver.disconnect();
+    }
+
+    // Cleanup slick carousel
+    try {
+      const slider = (window as any).$('.testimonials-slider');
+      if (slider.length && slider.slick) {
+        slider.slick('unslick');
+      }
+    } catch (e) {
+      // Fail silently
+    }
+  }
 
 
   faqs = [

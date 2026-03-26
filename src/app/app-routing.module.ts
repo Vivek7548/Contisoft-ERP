@@ -25,7 +25,7 @@ import { EsbtrEstampComponent } from './esbtr-estamp/esbtr-estamp.component';
 import { BankaccountApiComponent } from './bankaccount-api/bankaccount-api.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // default
+  { path: '', component: HeroComponent },
   { path: 'home', component: HeroComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },

@@ -577,6 +577,12 @@ $ease-default: 0.3s ease;
                 gap: 1.2rem;
                 margin-top: 2rem;
                 align-items: flex-start;
+                .btn-close {
+                    background: transparent;
+                    color: $color-text;
+                    border: 2px solid rgba(255, 215, 0, 0.6);
+                    box-shadow: none;
+                }
                 a {
                     border-radius: 10px;
                     text-align: center;
@@ -749,6 +755,9 @@ $ease-default: 0.3s ease;
         display: flex;
         align-items: center;
         gap: 1.2rem;
+        .btn-close {
+            display: none;
+        }
         .btn {
             font-size: 1rem;
             font-weight: 600;
@@ -810,6 +819,10 @@ $ease-default: 0.3s ease;
             gap: 1rem;
             width: 100%;
             margin-top: 1rem;
+            .btn-close {
+                display: block;
+                width: 100%;
+            }
             .btn {
                 width: 100%;
                 font-size: 1.1rem;
@@ -841,7 +854,16 @@ $ease-default: 0.3s ease;
 
     @media (max-width: 768px) {
         .nav__row {
-            padding: 0 16px;
+            padding: 0 56px 0 16px;
+        }
+
+        .nav__brand {
+            max-width: calc(100% - 56px);
+        }
+
+        .nav__brand .logo {
+            max-width: 100%;
+            height: auto;
         }
 
         .nav__menu.open {
@@ -869,6 +891,10 @@ $ease-default: 0.3s ease;
         .nav__menu.open .dropdown-menu {
             width: 100%;
             box-sizing: border-box;
+        }
+
+        .nav__menu.open ~ .hamburger {
+            display: none;
         }
     }
 

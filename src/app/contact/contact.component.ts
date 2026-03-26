@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -31,19 +31,36 @@ export class ContactComponent {
     'Vietnam','Zimbabwe'
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+constructor(
+  private fb: FormBuilder,
+  private http: HttpClient,
+  private title: Title,
+  private meta: Meta
+) {
 
-    this.contactForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      company: ['', Validators.required],
-      jobTitle: ['', Validators.required],
-      country: ['', Validators.required],
-      message: ['']
-    });
-  }
+  this.title.setTitle('Contact Contisoft | API Marketplace Support');
+
+  this.meta.updateTag({
+    name: 'description',
+    content: 'Contact Contisoft Technologies for API integration, partnerships, and enterprise solutions.'
+  });
+
+  this.meta.updateTag({
+    name: 'keywords',
+    content: 'Contact Contisoft, API Support, API Marketplace Help, Enterprise API Contact'
+  });
+
+  this.contactForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', Validators.required],
+    company: ['', Validators.required],
+    jobTitle: ['', Validators.required],
+    country: ['', Validators.required],
+    message: ['']
+  });
+}
 
   onSubmit() {
     if (this.contactForm.valid) {

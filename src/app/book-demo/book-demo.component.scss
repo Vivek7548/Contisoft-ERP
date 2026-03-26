@@ -362,6 +362,13 @@ textarea {
         padding: 2rem 1.5rem;
     }
 
+    .demo-hero__title {
+        font-size: clamp(2.2rem, 7vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.2px;
+        text-wrap: balance;
+    }
+
     .demo-hero__meta {
         justify-content: center;
         align-items: center;

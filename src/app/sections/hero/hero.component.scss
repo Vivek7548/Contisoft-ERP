@@ -2035,6 +2035,11 @@
                 padding: 3rem 1.5rem;
             }
 
+            .hero::before {
+                background: linear-gradient(180deg, rgba(6, 10, 24, 0.72) 0%, rgba(6, 10, 24, 0.52) 55%, rgba(6, 10, 24, 0.3) 100%);
+                opacity: 1;
+            }
+
             .hero__row {
                 flex-direction: column;
                 gap: 1.5rem;
@@ -2043,15 +2048,21 @@
             .hero__text {
                 max-width: 100%;
                 margin-left: 0;
+                backdrop-filter: blur(6px);
+                padding: 1.1rem 1.2rem;
+                border-radius: 18px;
             }
 
             .hero__text h1 {
                 font-size: 40px;
+                text-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
             }
 
             .hero__text p {
                 font-size: 16px;
                 margin: 0.5rem 0 1.5rem;
+                color: rgba(255, 255, 255, 0.92);
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
             }
 
             .hero__stats {
@@ -2061,6 +2072,8 @@
 
             .hero-stat-card {
                 text-align: center;
+                border-color: rgba(255, 255, 255, 0.18);
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
             }
 
             .hero-stat-value {
@@ -2070,6 +2083,7 @@
             .hero-stat-label {
                 font-size: 0.78rem;
                 letter-spacing: 0.1em;
+                color: rgba(232, 236, 255, 0.92);
             }
 
             .hero__text .button--primary {
